@@ -1,7 +1,7 @@
 package handler
 
 import (
-"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 type Handler struct {
@@ -17,26 +17,22 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	api := router.Group("/api")
 	{
-		lists := api.Group("/lists")
+		user := api.Group("/users")
 		{
-			lists.POST("/", h.createList)
-			lists.GET("/", h.getAllLists)
-			lists.GET("/:id", h.getListById)
-			lists.PUT("/:id", h.updateList)
-			lists.DELETE("/:id", h.deleteList)
-
-			items := lists.Group(":id/items")
-			{
-				items.POST("/", h.createItem)
-				items.GET("/", h.getAllItems)
-			}
+			user.POST("/", h.createUser)
+			user.GET("/:id", h.getUserById)
+			user.DELETE(":/id", h.deleteUser)
+		}
+		history := api.Group("/history")
+		{
+			history.GET("/:id", h.getHistoryById)
 		}
 
-		items := api.Group("items")
+		operation := api.Group("/")
 		{
-			items.GET("/:id", h.getItemById)
-			items.PUT("/:id", h.updateItem)
-			items.DELETE("/:id", h.deleteItem)
+			operation.POST("accrual/:id", h.acrrual)
+			operation.PUT("write-downs/:id", h.writedowns)
+			operation.DELETE("transfer/:id", h.transfer)
 		}
 	}
 
