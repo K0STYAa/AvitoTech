@@ -1,14 +1,14 @@
 package main
 
 import (
-	"log"
-	"os"
-
 	"github.com/K0STYAa/AvitoTech"
 	"github.com/K0STYAa/AvitoTech/pkg/handler"
 	"github.com/K0STYAa/AvitoTech/pkg/repository"
 	"github.com/K0STYAa/AvitoTech/pkg/service"
+
+	_ "github.com/lib/pq"
 	"github.com/spf13/viper"
+	"log"
 )
 
 
@@ -24,13 +24,13 @@ func main() {
 		Username: viper.GetString("db.username"),
 		DBName:   viper.GetString("db.dbname"),
 		SSLMode:  viper.GetString("db.sslmode"),
-		Password: os.Getenv("DB_PASSWORD"),
+		Password:  viper.GetString("db.password"),
 	})
 	if err != nil {
-		logrus.Fatalf("failed to initialize db: %s", err.Error())
+		log.Fatalf("failed to initialize db: %s", err.Error())
 	}
 
-	repos := repository.NewRepository()
+	repos := repository.NewRepository(db)
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
