@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h *Handler) acrrual(c *gin.Context) {
+func (h *Handler) accrual(c *gin.Context) {
 
 }
 
