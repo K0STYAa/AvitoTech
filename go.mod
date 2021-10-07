@@ -17,11 +17,11 @@ require (
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.0.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0 // indirect
-	github.com/jmoiron/sqlx v1.2.0
+	github.com/jmoiron/sqlx v1.3.4
 	github.com/joho/godotenv v1.3.0
 	github.com/jonboulle/clockwork v0.1.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/lib/pq v1.0.0
+	github.com/lib/pq v1.2.0
 	github.com/magiconair/properties v1.8.5
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/prometheus/client_golang v0.9.3 // indirect
