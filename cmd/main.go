@@ -5,10 +5,14 @@ import (
 
 	"github.com/K0STYAa/AvitoTech"
 	"github.com/K0STYAa/AvitoTech/pkg/handler"
+	"github.com/K0STYAa/AvitoTech/pkg/repository"
+	"github.com/K0STYAa/AvitoTech/pkg/service"
 )
 
 func main() {
-	handlers := new(handler.Handler)
+	repos := repository.NewRepository()
+	services := service.NewService(repos)
+	handlers := handler.NewHandler(services)
 
 	srv := new(AvitoTech.Server)
 	if err := srv.Run("8000", handlers.InitRoutes()); err != nil {
