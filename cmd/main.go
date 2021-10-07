@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/K0STYAa/AvitoTech"
 	"github.com/K0STYAa/AvitoTech/pkg/handler"
@@ -10,12 +11,27 @@ import (
 	"github.com/spf13/viper"
 )
 
+
+
 func main() {
 	if err := initConfig(); err != nil {
 		log.Fatalf("error initializing configs: %s", err.Error())
 	}
+
+	db, err := repository.NewPostgresDB(repository.Config{
+		Host:     viper.GetString("db.host"),
+		Port:     viper.GetString("db.port"),
+		Username: viper.GetString("db.username"),
+		DBName:   viper.GetString("db.dbname"),
+		SSLMode:  viper.GetString("db.sslmode"),
+		Password: os.Getenv("DB_PASSWORD"),
+	})
+	if err != nil {
+		logrus.Fatalf("failed to initialize db: %s", err.Error())
+	}
+
 	repos := repository.NewRepository()
-	services := service.(repos)
+	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
 	srv := new(AvitoTech.Server)
