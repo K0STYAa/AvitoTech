@@ -1,9 +1,12 @@
 package service
 
-import "github.com/K0STYAa/AvitoTech/pkg/repository"
+import (
+	"github.com/K0STYAa/AvitoTech"
+	"github.com/K0STYAa/AvitoTech/pkg/repository"
+)
 
 type User interface {
-
+	GetById(userId int) (AvitoTech.Users, error)
 }
 
 type History interface {
@@ -21,5 +24,7 @@ type Service struct {
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+
+	}
 }

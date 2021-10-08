@@ -6,4 +6,3 @@ db:
   port: "49153"
   dbname: "postgres"
   sslmode: "disable"
-  password: "qwerty"

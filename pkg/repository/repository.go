@@ -1,9 +1,12 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	"github.com/K0STYAa/AvitoTech"
+	"github.com/jmoiron/sqlx"
+)
 
 type User interface {
-
+	GetById(userId int) (AvitoTech.Users, error)
 }
 
 type History interface {
