@@ -10,7 +10,7 @@ type User interface {
 }
 
 type History interface {
-
+	GetById(historyId int) (AvitoTech.History, error)
 }
 
 type Operation interface {
@@ -20,11 +20,11 @@ type Operation interface {
 type Service struct {
 	User
 	History
-	Operation
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-
+		User: NewUserService(repos.User),
+		History: NewHistoryService(repos.History),
 	}
 }

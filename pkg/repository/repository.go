@@ -10,7 +10,7 @@ type User interface {
 }
 
 type History interface {
-
+	GetById(historyId int) (AvitoTech.History, error)
 }
 
 type Operation interface {
@@ -20,9 +20,11 @@ type Operation interface {
 type Repository struct {
 	User
 	History
-	Operation
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
-	return &Repository{}
+	return &Repository{
+		User: NewUserPostgres(db),
+		History: NewHistoryPostgres(db),
+	}
 }
