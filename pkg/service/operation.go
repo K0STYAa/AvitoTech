@@ -12,10 +12,14 @@ func NewOperationService(repo repository.Operation) *OperationService{
 	return &OperationService{repo: repo}
 }
 
-func (s *OperationService) Accrual(userId int, accrual int) (error) {
-	return s.repo.Accrual(userId, accrual)
+func (s *OperationService) Accrual(userId int, amount int) (error) {
+	return s.repo.Accrual(userId, amount)
 }
 
-func (s *OperationService) WriteDowns(userId int, accrual int) (error) {
-	return s.repo.WriteDowns(userId, accrual)
+func (s *OperationService) WriteDowns(userId int, amount int) (error) {
+	return s.repo.WriteDowns(userId, amount)
+}
+
+func (s *OperationService) Transfer(senderId int, receiver_id int, amount int) (error) {
+	return s.repo.Transfer(senderId, receiver_id, amount)
 }

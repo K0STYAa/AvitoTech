@@ -14,8 +14,9 @@ type History interface {
 }
 
 type Operation interface {
-	Accrual(userId int, accrual int) (error)
-	WriteDowns(userId int, accrual int) (error)
+	Accrual(userId int, amount int) (error)
+	WriteDowns(userId int, amount int) (error)
+	Transfer(senderId int, receiver_id int, amount int) (error)
 }
 
 type Repository struct {
