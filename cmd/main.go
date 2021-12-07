@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/joho/godotenv"
 	"github.com/K0STYAa/AvitoTech"
 	"github.com/K0STYAa/AvitoTech/pkg/handler"
 	"github.com/K0STYAa/AvitoTech/pkg/repository"
 	"github.com/K0STYAa/AvitoTech/pkg/service"
+	"github.com/joho/godotenv"
 
 	_ "github.com/lib/pq"
-	"github.com/spf13/viper"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 	"os"
 )
 
