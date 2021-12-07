@@ -30,9 +30,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		operation := api.Group("/")
 		{
-			operation.POST("accrual/:id", h.accrual)
-			operation.POST("write-downs/:id", h.writedowns)
-			operation.POST("transfer/:id", h.transfer)
+			operation.POST("accrual", h.accrual)
+			operation.POST("write-downs", h.writedowns)
+			operation.POST("transfer", h.transfer)
 		}
 	}
 

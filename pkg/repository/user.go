@@ -15,10 +15,10 @@ func NewUserPostgres(db *sqlx.DB) *UserPostgres {
 }
 
 func (r *UserPostgres) GetById(userId int) (AvitoTech.Users, error) {
-	var list AvitoTech.Users
+	var user AvitoTech.Users
 
 	query := fmt.Sprintf(`SELECT * FROM %s t1 WHERE t1.id = $1`, usersTable)
-	err := r.db.Get(&list, query, userId)
+	err := r.db.Get(&user, query, userId)
 
-	return list, err
+	return user, err
 }

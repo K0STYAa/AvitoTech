@@ -14,17 +14,20 @@ type History interface {
 }
 
 type Operation interface {
-
+	Accrual(userId int, accrual int) (error)
+	WriteDowns(userId int, accrual int) (error)
 }
 
 type Service struct {
 	User
 	History
+	Operation
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		User: NewUserService(repos.User),
 		History: NewHistoryService(repos.History),
+		Operation: NewOperationService(repos.Operation),
 	}
 }

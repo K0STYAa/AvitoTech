@@ -15,10 +15,10 @@ func NewHistoryPostgres(db *sqlx.DB) *HistoryPostgres {
 }
 
 func (r *HistoryPostgres) GetById(historyId int) (AvitoTech.History, error) {
-	var list AvitoTech.History
+	var hist AvitoTech.History
 
-	query := fmt.Sprintf(`SELECT * FROM %s t1 WHERE t1.id = $1`, historyTable)
-	err := r.db.Get(&list, query, historyId)
+	query := fmt.Sprintf(`SELECT * FROM %s t1 WHERE t1.sender_id = $1 or t1.receiver_id = $1`, historyTable)
+	err := r.db.Get(&hist, query, historyId)
 
-	return list, err
+	return hist, err
 }

@@ -14,17 +14,20 @@ type History interface {
 }
 
 type Operation interface {
-
+	Accrual(userId int, accrual int) (error)
+	WriteDowns(userId int, accrual int) (error)
 }
 
 type Repository struct {
 	User
 	History
+	Operation
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		User: NewUserPostgres(db),
 		History: NewHistoryPostgres(db),
+		Operation: NewOperationPostgres(db),
 	}
 }

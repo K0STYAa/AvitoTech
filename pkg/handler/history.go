@@ -13,12 +13,12 @@ func (h *Handler) getHistoryById(c *gin.Context) {
 		return
 	}
 
-	user, err := h.services.History.GetById(id)
+	hist, err := h.services.History.GetById(id)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	c.JSON(http.StatusOK, user)
+	c.JSON(http.StatusOK, hist)
 
 }
