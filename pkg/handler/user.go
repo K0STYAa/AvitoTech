@@ -13,15 +13,10 @@ func (h *Handler) getUserById(c *gin.Context) {
 		return
 	}
 
-	currency, currency_err := strconv.Atoi(c.DefaultQuery("currency", "0"))
-	if currency_err != nil {
-		newErrorResponse(c, http.StatusBadRequest, "invalid currency param")
-		return
-	}
-
-	user, err := h.services.User.GetById(id, currency)
-	if err != nil {
-		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+	currency := c.Query("currency")
+	user, err2 := h.services.User.GetById(id, currency)
+	if err2 != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err2.Error())
 		return
 	}
 
