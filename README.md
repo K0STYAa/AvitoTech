@@ -18,3 +18,9 @@ make build && make run
 ```
 make migrate
 ```
+
+Если требуется прекратить работу сервера или бд:
+```
+make app_down
+make db_down
+```
