@@ -41,7 +41,9 @@ func (s *UserService) GetById(userId int, currency int) (AvitoTech.Users, error)
 				}
 			}
 		}
-		user.Balance = user.Balance / RUB * USD
+		balance_float := float64(user.Balance)
+		balance_float_usd := balance_float / RUB * USD
+		user.Balance = int(balance_float_usd)
 	}
 	return user, err
 }
