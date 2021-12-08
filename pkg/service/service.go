@@ -6,7 +6,7 @@ import (
 )
 
 type User interface {
-	GetById(userId int) (AvitoTech.Users, error)
+	GetById(userId int, currency int) (AvitoTech.Users, error)
 }
 
 type History interface {
