@@ -6,6 +6,7 @@ import (
 	"github.com/K0STYAa/AvitoTech/pkg/repository"
 	"io/ioutil"
 	"net/http"
+	"math"
 )
 
 type UserService struct {
@@ -41,9 +42,7 @@ func (s *UserService) GetById(userId int, currency int) (AvitoTech.Users, error)
 				}
 			}
 		}
-		balance_float := float64(user.Balance)
-		balance_float_usd := balance_float / RUB * USD
-		user.Balance = int(balance_float_usd)
+		user.Balance = math.Floor((user.Balance / RUB * USD)*100)/100
 	}
 	return user, err
 }

@@ -20,7 +20,7 @@ func (h *Handler) accrual(c *gin.Context) {
 		return
 	}
 
-	accrual_err := h.services.Operation.Accrual(id, amount)
+	accrual_err := h.services.Operation.Accrual(id, float64(amount))
 	if accrual_err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, accrual_err.Error())
 		return
@@ -46,7 +46,7 @@ func (h *Handler) writedowns(c *gin.Context) {
 		return
 	}
 
-	write_downs_err := h.services.Operation.WriteDowns(id, amount)
+	write_downs_err := h.services.Operation.WriteDowns(id, float64(amount))
 	if write_downs_err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, write_downs_err.Error())
 		return
@@ -78,7 +78,7 @@ func (h *Handler) transfer(c *gin.Context) {
 		return
 	}
 
-	transfer_err := h.services.Operation.Transfer(sender_id, receiver_id, amount)
+	transfer_err := h.services.Operation.Transfer(sender_id, receiver_id, float64(amount))
 	if transfer_err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, transfer_err.Error())
 		return
