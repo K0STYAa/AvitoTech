@@ -16,7 +16,12 @@ func (h *Handler) getUserById(c *gin.Context) {
 	currency := c.Query("currency")
 	user, err2 := h.services.User.GetById(id, currency)
 	if err2 != nil {
-		newErrorResponse(c, http.StatusInternalServerError, err2.Error())
+		switch err2.Error() {
+		case `sql: no rows in result set`:
+			newErrorResponse(c, http.StatusInternalServerError, "user not found")
+		default:
+			newErrorResponse(c, http.StatusInternalServerError, err2.Error())
+		}
 		return
 	}
 
