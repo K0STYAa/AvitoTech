@@ -1,10 +1,15 @@
 package handler
 
 import (
+	"github.com/K0STYAa/AvitoTech"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 )
+
+type getHistResponce struct {
+	Data []AvitoTech.History `json:"data"`
+}
 
 func (h *Handler) getHistoryById(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -19,6 +24,8 @@ func (h *Handler) getHistoryById(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, hist)
+	c.JSON(http.StatusOK, getHistResponce{
+		Data: hist,
+	})
 
 }

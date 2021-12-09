@@ -123,5 +123,12 @@ func (r *OperationPostgres) Transfer(senderId int, receiver_id int, amount float
 		return err
 	}
 
+	hist_query := fmt.Sprintf("INSERT INTO %s (sender_id, receiver_id, amount, departure_time) VALUES ($1, $2, $3, now())", historyTable)
+	_, err = tx.Exec(hist_query, senderId, receiver_id, amount)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
 	return tx.Commit()
 }

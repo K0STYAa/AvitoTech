@@ -13,6 +13,6 @@ func NewHistoryService(repo repository.History) *HistoryService{
 	return &HistoryService{repo: repo}
 }
 
-func (s *HistoryService) GetById(historyId int) (AvitoTech.History, error) {
+func (s *HistoryService) GetById(historyId int) ([]AvitoTech.History, error) {
 	return s.repo.GetById(historyId)
 }

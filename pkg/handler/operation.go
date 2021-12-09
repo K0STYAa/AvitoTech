@@ -14,7 +14,8 @@ func (h *Handler) accrual(c *gin.Context) {
 		return
 	}
 
-	amount, amount_err := strconv.Atoi(c.Query("amount"))
+
+	amount, amount_err := strconv.ParseFloat(c.Query("amount"), 64)
 	if amount_err != nil {
 		newErrorResponse(c, http.StatusBadRequest, "invalid amount param")
 		return
@@ -40,7 +41,7 @@ func (h *Handler) writedowns(c *gin.Context) {
 		return
 	}
 
-	amount, amount_err := strconv.Atoi(c.Query("amount"))
+	amount, amount_err := strconv.ParseFloat(c.Query("amount"), 64)
 	if amount_err != nil {
 		newErrorResponse(c, http.StatusBadRequest, "invalid amount param")
 		return
@@ -72,7 +73,7 @@ func (h *Handler) transfer(c *gin.Context) {
 		return
 	}
 
-	amount, amount_err := strconv.Atoi(c.Query("amount"))
+	amount, amount_err := strconv.ParseFloat(c.Query("amount"), 64)
 	if amount_err != nil {
 		newErrorResponse(c, http.StatusBadRequest, "invalid amount param")
 		return
