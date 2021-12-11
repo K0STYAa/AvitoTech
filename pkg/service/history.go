@@ -20,3 +20,7 @@ func (s *HistoryService) GetById(historyId int, sort string, typeSort string, li
 	}
 	return history, err
 }
+
+func (s *HistoryService) GetCountById(historyId int) (int, error) {
+	return s.repo.GetCountById(historyId)
+}

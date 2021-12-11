@@ -26,6 +26,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		history := api.Group("/history")
 		{
 			history.GET("/:id", h.getHistoryById)
+			history.GET("/count/:id", h.getHistoryCountById)
 		}
 
 		operation := api.Group("/")

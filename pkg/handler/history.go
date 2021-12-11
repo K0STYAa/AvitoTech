@@ -13,7 +13,7 @@ type getHistResponce struct {
 
 func (h *Handler) getHistoryById(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
-	if err != nil || id == 0 {
+	if err != nil || id <= 0 {
 		newErrorResponse(c, http.StatusBadRequest, "invalid id param")
 		return
 	}
@@ -38,4 +38,26 @@ func (h *Handler) getHistoryById(c *gin.Context) {
 		Data: hist,
 	})
 
+}
+
+type CountHist struct{
+	Count int `json:"count"`
+}
+
+func (h *Handler) getHistoryCountById(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil || id <= 0 {
+		newErrorResponse(c, http.StatusBadRequest, "invalid id param")
+		return
+	}
+
+	count, err2 := h.services.History.GetCountById(id)
+	if err2 != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err2.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, CountHist{
+		Count: count,
+	})
 }

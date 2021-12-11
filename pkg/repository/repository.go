@@ -11,6 +11,7 @@ type User interface {
 
 type History interface {
 	GetById(historyId int, sort string, typeSort string, limit string, offset int) ([]AvitoTech.History, error)
+	GetCountById(historyId int) (int, error)
 }
 
 type Operation interface {

@@ -45,3 +45,10 @@ func (r *HistoryPostgres) GetById(historyId int, sort string, typeSort string, l
 
 	return hist, err
 }
+
+func (r *HistoryPostgres) GetCountById(historyId int) (int, error) {
+	var count int
+	query := fmt.Sprintf(`SELECT count(*) FROM %s t1 WHERE t1.sender_id = $1 or t1.receiver_id = $1`, historyTable)
+	err := r.db.Get(&count, query, historyId)
+	return count, err
+}
