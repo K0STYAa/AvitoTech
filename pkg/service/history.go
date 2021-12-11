@@ -13,6 +13,10 @@ func NewHistoryService(repo repository.History) *HistoryService{
 	return &HistoryService{repo: repo}
 }
 
-func (s *HistoryService) GetById(historyId int) ([]AvitoTech.History, error) {
-	return s.repo.GetById(historyId)
+func (s *HistoryService) GetById(historyId int, sort string, typeSort string, limit string, offset int) ([]AvitoTech.History, error) {
+	history, err := s.repo.GetById(historyId, sort, typeSort, limit, offset)
+	for index, element := range history {
+		history[index].Amount = element.Amount / 100
+	}
+	return history, err
 }

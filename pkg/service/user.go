@@ -43,12 +43,12 @@ func (s *UserService) GetById(userId int, currency string) (AvitoTech.Users, err
 			}
 		}
 		if currency != "EUR" {
-			user.Balance = math.Floor((user.Balance/RUB*Currency)*100) / 100
+			user.Balance = math.Floor(user.Balance/RUB*Currency) / 100
 		} else {
-			user.Balance = math.Floor((user.Balance/RUB)*100) / 100
+			user.Balance = math.Floor(user.Balance/RUB) / 100
 		}
 	} else {
-		user.Balance = math.Floor(user.Balance*100) / 100
+		user.Balance = math.Floor(user.Balance) / 100
 	}
 	return user, err
 }

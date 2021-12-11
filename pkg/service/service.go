@@ -10,7 +10,7 @@ type User interface {
 }
 
 type History interface {
-	GetById(historyId int) ([]AvitoTech.History, error)
+	GetById(historyId int, sort string, typeSort string, limit string, offset int) ([]AvitoTech.History, error)
 }
 
 type Operation interface {

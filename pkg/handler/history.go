@@ -18,9 +18,19 @@ func (h *Handler) getHistoryById(c *gin.Context) {
 		return
 	}
 
-	hist, err := h.services.History.GetById(id)
-	if err != nil {
-		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+	sort := c.DefaultQuery("sort", "date")
+	typeSort := c.DefaultQuery("type", "inc")
+	limit := c.DefaultQuery("limit", "ALL")
+
+	offset, err5 := strconv.Atoi(c.DefaultQuery("offset", "0"))
+	if err5 != nil || offset < 0 {
+		newErrorResponse(c, http.StatusBadRequest, "invalid offset param")
+		return
+	}
+
+	hist, err6 := h.services.History.GetById(id, sort, typeSort, limit, offset)
+	if err6 != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err6.Error())
 		return
 	}
 

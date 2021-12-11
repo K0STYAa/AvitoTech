@@ -14,7 +14,7 @@ func NewOperationPostgres(db *sqlx.DB) *OperationPostgres {
 	return &OperationPostgres{db: db}
 }
 
-func (r *OperationPostgres) Accrual(userId int, amount float64) (error) {
+func (r *OperationPostgres) Accrual(userId int, amount int) (error) {
 	tx, err := r.db.Begin()
 	if err != nil {
 		return err
@@ -59,7 +59,7 @@ func (r *OperationPostgres) Accrual(userId int, amount float64) (error) {
 	return tx.Commit()
 }
 
-func (r *OperationPostgres) WriteDowns(userId int, amount float64) (error) {
+func (r *OperationPostgres) WriteDowns(userId int, amount int) (error) {
 	tx, err := r.db.Begin()
 	if err != nil {
 		return err
@@ -94,7 +94,7 @@ func (r *OperationPostgres) WriteDowns(userId int, amount float64) (error) {
 	return tx.Commit()
 }
 
-func (r *OperationPostgres) Transfer(senderId int, receiver_id int, amount float64) (error) {
+func (r *OperationPostgres) Transfer(senderId int, receiver_id int, amount int) (error) {
 	tx, err := r.db.Begin()
 	if err != nil {
 		return err

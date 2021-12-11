@@ -10,13 +10,13 @@ type User interface {
 }
 
 type History interface {
-	GetById(historyId int) ([]AvitoTech.History, error)
+	GetById(historyId int, sort string, typeSort string, limit string, offset int) ([]AvitoTech.History, error)
 }
 
 type Operation interface {
-	Accrual(userId int, amount float64) (error)
-	WriteDowns(userId int, amount float64) (error)
-	Transfer(senderId int, receiver_id int, amount float64) (error)
+	Accrual(userId int, amount int) (error)
+	WriteDowns(userId int, amount int) (error)
+	Transfer(senderId int, receiverId int, amount int) (error)
 }
 
 type Repository struct {

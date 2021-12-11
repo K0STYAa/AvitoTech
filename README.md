@@ -1,11 +1,11 @@
 # REST API Avito balance system
 
 ## Разобранны следующие операции:
-- get:    /api/users/{id}?currency=                       - получение баланса пользователя(currency - опционально; например: USD, EUR, CNY)
-- get:    /api/history/{id}                               - получение истории операций пользователя
-- post:   /api/accrual?id=&amount=                        - начисление денег пользователю на счет
-- post:   /api/write-downs?id=&amount=                    - списание денег с пользовательского счета
-- post:   /api/transfer?sender_id=&receiver_id=&amount=   - списание денег между пользовательскими счетами
+- GET:    /api/users/{id}?currency=                       - получение баланса пользователя (currency - опционально; например: USD, EUR, CNY)
+- GET:    /api/history/{id}?sort=&type=&limit=&offset=    - получение истории операций пользователя (Параметры опциональны. sort=sum/date, type=inc/dec, показываются элементы с offset до offset+limit. Default values = date, inc, все элементы без отступа)
+- POST:   /api/accrual?id=&amount=                        - начисление денег пользователю на счет
+- POST:   /api/write-downs?id=&amount=                    - списание денег с пользовательского счета
+- POST:   /api/transfer?sender_id=&receiver_id=&amount=   - списание денег между пользовательскими счетами
 
 ### Для запуска приложения:
 
@@ -24,3 +24,8 @@ make migrate
 make app_down
 make db_down
 ```
+
+### To do:
+1. Unit-tests
+2. Индексирование таблицы истории по сумме, индексирование + партицирование таблицы истории по дате.
+3. Улучшенное логирование. Можно писать не только ошибки но и успешные операции.
