@@ -1,12 +1,12 @@
 CREATE TABLE users
 (
-    id            serial PRIMARY KEY  CHECK (id >= 0) unique,
+    id            PRIMARY KEY  CHECK (id >= 0) unique,
     balance       int                 CHECK (balance >= 0)
 );
 
 CREATE TABLE history
 (
-    id             serial PRIMARY KEY                               not null unique,
+    id             serial PRIMARY KEY                               not null,
     sender_id      int references users (id) on delete cascade      CHECK (sender_id >= 0),
     receiver_id    int references users (id) on delete cascade      CHECK (receiver_id >= 0),
     amount         int                                              CHECK (amount > 0),

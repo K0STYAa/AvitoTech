@@ -35,8 +35,8 @@ func (r *HistoryPostgres) GetById(historyId int, sort string, typeSort string, l
 		return hist, errors.New("invalid type param")
 	}
 
-	limitInt, err2 := strconv.Atoi(limit)
-	if limit != "ALL" && (err2 != nil || limitInt <= 0) {
+	limitInt, err_lim := strconv.Atoi(limit)
+	if limit != "ALL" && (err_lim != nil || limitInt <= 0) {
 		return hist, errors.New("invalid limit param")
 	}
 
